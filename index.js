@@ -21,23 +21,49 @@ app.set('view engine', 'ejs');
 
 // | GET | /games | index | display a list of all games |
 app.get('/games', function(req, res) {
-  // this will error out, navigate to your /games route and read the error.
-  // What is missing in your views directory?
-  res.render('home');
+    var games = fs.readFileSync('./games.json');
+    games = JSON.parse(games);
+    res.render('home', {games: games});
 });
 
 // | GET | /games/new | new | return an HTML form for creating a new game |
 app.get('/games/new', function (req, res) {
-    
+    res.render('new')
 });
 
 // | POST | /games | create | create a new game (using form data from /games/new) |
+app.post('/games', function(req, res) {
+    var games = fs.readFileSync('./games.json');
+    games = JSON.parse(games);
+    games.push({name: req.body.name, description: req.body.description});
+    fs.writeFileSync('./games.json', JSON.stringify(games));
+    res.redirect('/games');
+})
 
 // | GET | /games/:name | show | display a specific game |
+app.get('/games/:id', function(req, res) {
+    var games = fs.readFileSync('./games.json');
+    games = JSON.parse(games);
+    res.render('show', { game: games[req.params.id] });
+})
 
 // | GET | /games/:name/edit | edit | return an HTML form for editing a game |
+app.get('/games/:id/edit', function (req, res) {
+    var games = fs.readFileSync('./games.json');
+    games = JSON.parse(games);
+    res.render('edit', {game: games[req.params.id], id: req.params.id});
+});
 
 // | PUT | /games/:name | update | update a specific game (using form data from /games/:name/edit) |
+app.post('/games/:id', function (req, res) {
+    var games = fs.readFileSync('./games.json');
+    games = JSON.parse(games);
+    games[req.params.id].name = req.body.name;
+    games[req.params.id].description = req.body.description;
+    fs.writeFileSync('./games.json', JSON.stringify(games));
+    res.json(games);
+})
+
 
 // | DELETE | /games/:name | destroy | deletes a specific game |
 

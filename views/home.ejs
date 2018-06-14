@@ -1,1 +1,6 @@
-<h1>This is the home route!</h1>
+<h1>Home</h1>
+<ul>
+  <% games.forEach(function(game, i) { %>
+  <li><%= game.name %> : <%= game.description %><a href="/games/<%= i %>">Delete</a></li>
+  <% }); %>
+</ul>
