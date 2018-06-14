@@ -1,6 +1,6 @@
 <h1>Home</h1>
 <ul>
   <% games.forEach(function(game, i) { %>
-  <li><%= game.name %> : <%= game.description %><a href="/games/<%= i %>">Delete</a></li>
+  <li><%= game.name %> : <%= game.description %><a href="/games/<%= i %>" id="delete">Delete</a></li>
   <% }); %>
 </ul>

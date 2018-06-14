@@ -55,7 +55,7 @@ app.get('/games/:id/edit', function (req, res) {
 });
 
 // | PUT | /games/:name | update | update a specific game (using form data from /games/:name/edit) |
-app.post('/games/:id', function (req, res) {
+app.put('/games/:id', function (req, res) {
     var games = fs.readFileSync('./games.json');
     games = JSON.parse(games);
     games[req.params.id].name = req.body.name;
@@ -63,7 +63,6 @@ app.post('/games/:id', function (req, res) {
     fs.writeFileSync('./games.json', JSON.stringify(games));
     res.json(games);
 })
-
 
 // | DELETE | /games/:name | destroy | deletes a specific game |
 

@@ -1,5 +1,5 @@
 <h1>Update a board game:</h1>
-<form method="POST" action="/games<%= id %>">
+<form method="POST" action="/games/<%= id %>">
   <input type="text" name="name" value="<%= game.name %>" />
   <input type="text" name="description" value="<%= game.description %>"/>
   <input type="submit" value="Update game!" />
