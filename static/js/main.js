@@ -1,4 +1,9 @@
-console.log("JS good to go, sir!");
+$(document).ready(function() {
+  console.log("JS good to go, sir!");
+
+  
+});
+
 
 // listen for a "submit" event for the edit page. the edit form will live
 // at the path GET /games/:name/edit. Use AJAX to send a PUT request to the

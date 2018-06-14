@@ -20,13 +20,16 @@ app.set('view engine', 'ejs');
 // Routes begin here
 
 // | GET | /games | index | display a list of all games |
-app.get('/', function(req, res) {
+app.get('/games', function(req, res) {
   // this will error out, navigate to your /games route and read the error.
   // What is missing in your views directory?
-  res.render('games');
+  res.render('home');
 });
 
 // | GET | /games/new | new | return an HTML form for creating a new game |
+app.get('/games/new', function (req, res) {
+    
+});
 
 // | POST | /games | create | create a new game (using form data from /games/new) |
 
